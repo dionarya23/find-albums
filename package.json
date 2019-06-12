@@ -4,18 +4,24 @@
   "description": "Starter kit for creating React/Redux and Express apps",
   "main": "server.js",
   "scripts": {
-    "client-install": "cd client && npm install",
+    "client-install": "cd react && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "client": "npm start --prefix react",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Brad Traversy & Gregory Assasie",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
+    "body-parser": "^1.19.0",
     "concurrently": "^3.5.1",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.0.0",
     "express": "^4.16.2",
-    "nodemon": "^1.14.7"
+    "express-session": "^1.16.2",
+    "nodemon": "^1.14.7",
+    "passport": "^0.4.0",
+    "passport-spotify": "^1.0.1"
   }
 }

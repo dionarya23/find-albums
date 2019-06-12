@@ -1,17 +1,30 @@
-const express = require('express');
+const express       = require('express');
+const bodyParser    = require('body-parser');
+const session       = require('express-session');
+const cookieParser  = require('cookie-parser');
+const app           = express();
+require('dotenv').config();
+const passport      = require('passport')
 
-const app = express();
 
-app.get('/api/customers', (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'John', lastName: 'Doe'},
-    {id: 2, firstName: 'Brad', lastName: 'Traversy'},
-    {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-  ];
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(session({
+      saveUninitialized: true,
+      resave: true,
+      secret: "ini rahasia",
+       }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-  res.json(customers);
-});
+
+app.get('/api/home', (req, res) => {
+          res.json({user:req.user})
+})
+
+
+app.use('/api/auth', require('./routes/login'));
 
 const port = 5000;
-
-app.listen(port, () => `Server running on port ${port}`);
+app.listen(port, () => console.log(`Server running on port ${port}`));
