@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import logo from './logo.svg'
 import './App.css'
 import store from './store'
+import User from './components/User'
 
 class App extends Component {
 
@@ -14,7 +15,7 @@ class App extends Component {
             <img src={ logo } className="App-logo" alt="logo"/>
             <h1 className="App-title">React/Redux Express Starter</h1>
           </header>
-          
+          <User />
         </div>
       </Provider>
     )

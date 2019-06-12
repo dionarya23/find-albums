@@ -1,6 +1,9 @@
 import {GET_USER} from '../actions/constants'
 
-const userReducer = (state = [], {type, payload}) => {
+const initialState = {
+  user : {}
+}
+const userReducer = (state = initialState, {type, payload}) => {
     switch (type) {
       case GET_USER:
         return payload
