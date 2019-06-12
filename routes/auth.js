@@ -1,16 +1,44 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('../config/passport')
-const HOMPAGE_CLIENT = "http://localhost:3000"
+const CLIENT_HOME_PAGE_URL = "http://localhost:3000"
 
 
-router.get('/', passport.authenticate('spotify'))
+router.get('/', passport.authenticate('spotify', {
+  scope: ['user-read-email', 'user-read-private',
+          'user-read-playback-state', ''
+          ]
+}))
 
 router.get('/spotify/callback', passport.authenticate('spotify', {
-    successRedirect: HOMPAGE_CLIENT,
+    successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect : '/api/auth/fail'
-}), (req, res) => {
+}))
 
+router.post('/token', (req, res) => {
+  fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `Basic ${Buffer.from(process.env.CLIENT_ID+ ':' +process.env.CLIENT_SECRET ).toString('base64')}`
+    },
+    body: {
+      grant_type    : 'refresh_token',
+      refresh_token : req.body.refresh_token
+    }
+  }).then(res => res.json())
+  .then(tokens => {
+    
+    req.user.accessToken = tokens.access_token
+      res.json({
+        accessToken: tokens.access_token
+      })
+
+  }).catch(err => {
+    res.json({
+      message: 'fail'
+    })
+  })
 })
 
 // when login is successful, retrieve user info

@@ -19,16 +19,18 @@ class User extends Component {
 
 
       render() {
-         const { authenticated } = this.props.user
+         const { authenticated, user } = this.props.user
          console.log(this.props.user)
           return (
             <div>
                 <h2>What's Up ?</h2>
 
                 {authenticated ? (
+                    <div>
                     <h1>You Login</h1>
-                    <h2>hello {this.props.user.profile.displayName}</h2>
+                    <h2>hello {user.profile.display_name}</h2>
                     <button onClick={() => window.open('http://localhost:5000/api/auth/logout', "_self")}>logout</button>
+                    </div>
                 ) : (
                     <button onClick={() => window.open('http://localhost:5000/api/auth', "_self")}>SigIn With Spotify</button>
                 )}
