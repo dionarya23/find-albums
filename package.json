@@ -1,17 +1,21 @@
 {
-  "name": "find-albums",
+  "name": "reactexpress",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Starter kit for creating React/Redux and Express apps",
+  "main": "server.js",
   "scripts": {
-    "client": "cd client && npm start",
-    "server": "cd server && npm start",
-    "start": "concurrently - kill-others \"npm run server\" \"npm run client\""
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "keywords": [],
-  "author": "Dion Arya Pamungkas <dionarya.p@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^4.1.0"
+  "author": "Brad Traversy & Gregory Assasie",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "nodemon": "^1.14.7"
   }
 }
