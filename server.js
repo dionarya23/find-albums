@@ -19,8 +19,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/api/home', (req, res) => {
+app.get('/api/user', (req, res) => {
+      if (req.user) {
           res.json({user:req.user})
+      } else {
+            res.json({
+                  user:null
+            })
+      }
 })
 
 
