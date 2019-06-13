@@ -9,6 +9,7 @@ import store from './store'
 /**
  * Component Stuf
  */
+
 import Home from './components/Home'
 import { Hero, HeroBody, 
         HeroFooter,
@@ -28,6 +29,7 @@ class App extends Component {
                 isColor="dark"
            isSize="large">
             <HeroBody>
+            {/* <Home /> */}
                 <Container style={{
               marginTop:'-8%'
             }} hasTextAlign='centered'>
@@ -40,7 +42,7 @@ class App extends Component {
                        temukan playlist hanya dengan mengupload cover album artist favoritmu
                      </Subtitle>
                    
-                    <Button isSize={'medium'} style={{
+                    <Button onClick={() => window.open('http://localhost:5000/api/auth', "_self")} isSize={'medium'} style={{
                       backgroundColor:'#03CA5F',
                       border: 'none',
                       color: 'white',
@@ -54,11 +56,13 @@ class App extends Component {
             <Container style={{
             marginTop:'-5%'
           }} hasTextAlign='centered'>
+
                 <Title isSize={5}>Made with ❤️ 
                 By <a style={{textDecoration:'none', color:'white'}} 
                   target="_blank" 
                   href="http://github.com/dionarya6661"> Dion Arya Pamungkas</a>
               </Title>
+              
             </Container>
             </HeroFooter>
           </Hero>
