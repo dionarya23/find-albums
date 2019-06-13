@@ -1,22 +1,67 @@
 import React, { Component } from 'react'
+
+/**
+ * REDUX STUFF IN HERE
+ */
 import { Provider } from 'react-redux'
-import logo from './logo.svg'
-import './App.css'
 import store from './store'
-import User from './components/User'
+
+/**
+ * Component Stuf
+ */
+import Home from './components/Home'
+import { Hero, HeroBody, 
+        HeroFooter,
+        Container, Title,
+        Subtitle, Button
+      } from 'bloomer'
 
 class App extends Component {
 
   render () {
     return (
       <Provider store={ store }>
-        <div className="App">
-          <header className="App-header">
-            <img src={ logo } className="App-logo" alt="logo"/>
-            <h1 className="App-title">React/Redux Express Starter</h1>
-          </header>
-          <User />
-        </div>
+          <Hero isFullHeight={true} 
+                style={{
+                  backgroundColor:'#1f87ff'
+              }}
+                isColor="dark"
+           isSize="large">
+            <HeroBody>
+                <Container style={{
+              marginTop:'-8%'
+            }} hasTextAlign='centered'>
+                     <Title style={{
+                       fontSize:'6em'
+                     }} isSize={1} >
+                      find the album
+                     </Title>
+                     <Subtitle isSize={5}>
+                       temukan playlist hanya dengan mengupload cover album artist favoritmu
+                     </Subtitle>
+                   
+                    <Button isSize={'medium'} style={{
+                      backgroundColor:'#03CA5F',
+                      border: 'none',
+                      color: 'white',
+                      fontFamily: 'Signika',
+                      borderRadius: '15px',
+                    }}>SignIn With Spotify</Button>
+               
+                </Container>
+            </HeroBody>
+          <HeroFooter>
+            <Container style={{
+            marginTop:'-5%'
+          }} hasTextAlign='centered'>
+                <Title isSize={5}>Made with ❤️ 
+                By <a style={{textDecoration:'none', color:'white'}} 
+                  target="_blank" 
+                  href="http://github.com/dionarya6661"> Dion Arya Pamungkas</a>
+              </Title>
+            </Container>
+            </HeroFooter>
+          </Hero>
       </Provider>
     )
   }
