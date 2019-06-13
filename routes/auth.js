@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express  = require('express');
+const router   = express.Router();
 const passport = require('../config/passport')
-const CLIENT_HOME_PAGE_URL = "http://localhost:3000"
-
+const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL
 
 router.get('/', passport.authenticate('spotify', {
   scope: ['user-read-email', 'user-read-private',
