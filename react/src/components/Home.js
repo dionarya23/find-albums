@@ -38,7 +38,7 @@ class Home extends Component {
 
                   <Title isSize={1}>find the album | 
                   <Button onClick={() => 
-                          window.open(REACT_APP_LOGOUT_URL, "_self")} 
+                          window.open(process.env.REACT_APP_LOGOUT_URL, "_self")} 
                           isSize={'medium'} 
                     style={{
                       backgroundColor:'red',

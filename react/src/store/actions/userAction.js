@@ -1,7 +1,7 @@
 import {GET_USER} from './constants'
 
 export const getUser = () => dispatch => {
-    fetch(REACT_APP_ENPOINT+'/api/auth/success', {
+    fetch(process.env.REACT_APP_ENPOINT+'/api/auth/success', {
         method: 'GET',
         credentials: 'include',
         headers: {
