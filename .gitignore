@@ -1,6 +1,6 @@
 /node_modules
 package-lock.json/
+/react
 .idea
 .env
-/react
 capture-20190614-205131.png

@@ -19,8 +19,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 app.use(
       cors({
         origin: process.env.CLIENT_HOME_PAGE_URL, // allow to server to accept request from different origin
@@ -28,7 +26,9 @@ app.use(
         credentials: true // allow session cookie from browser to pass through
       })
 );
-
+app.get('/', (req, res) => {
+  res.send("hi")
+})
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/album', require('./routes/album'))
 
