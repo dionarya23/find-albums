@@ -6,7 +6,6 @@ export const getAlbum = image => dispatch => {
         credentials: 'include',
         headers: {
             Accept: 'application/json',
-            // 'Content-Type':'multipart/form-data',
             "Access-Control-Allow-Credentials": true,
             "x-api-key": process.env.REACT_APP_X_API_KEY
         },
