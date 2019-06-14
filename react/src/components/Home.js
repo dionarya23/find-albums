@@ -38,7 +38,7 @@ class Home extends Component {
 
                   <Title isSize={1}>find the album | 
                   <Button onClick={() => 
-                          window.open('https://findalbum-backend.herokuapp.com/api/auth/logout', "_self")} 
+                          window.open(REACT_APP_LOGOUT_URL, "_self")} 
                           isSize={'medium'} 
                     style={{
                       backgroundColor:'red',

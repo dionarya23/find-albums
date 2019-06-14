@@ -1,7 +1,7 @@
 import {GET_USER} from './constants'
 
 export const getUser = () => dispatch => {
-    fetch('https://findalbum-backend.herokuapp.com/api/auth/success', {
+    fetch(REACT_APP_ENPOINT+'/api/auth/success', {
         method: 'GET',
         credentials: 'include',
         headers: {
