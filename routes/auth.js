@@ -4,9 +4,7 @@ const passport = require('../config/passport')
 const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL
 
 router.get('/', passport.authenticate('spotify', {
-  scope: ['user-read-email', 'user-read-private',
-          'user-read-playback-state', ''
-          ]
+  scope: ['user-read-email', 'user-read-private']
 }))
 
 router.get('/spotify/callback', passport.authenticate('spotify', {
@@ -42,7 +40,6 @@ router.post('/token', (req, res) => {
 
 // when login is successful, retrieve user info
 router.get("/success", (req, res) => {
-  console.log(req.user)
 
     if (req.user) {
       res.status(200).json({

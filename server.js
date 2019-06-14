@@ -30,6 +30,7 @@ app.use(
 );
 
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/album', require('./routes/album'))
 
 const port = 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

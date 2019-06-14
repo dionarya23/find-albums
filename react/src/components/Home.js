@@ -9,6 +9,7 @@ import {
     Button,
  } from 'bloomer'
  import Login from './Login.jsx'
+ import Process from './Process.jsx'
  
 
 class Home extends Component {
@@ -37,7 +38,7 @@ class Home extends Component {
 
                   <Title isSize={1}>find the album | 
                   <Button onClick={() => 
-                          window.open('http://localhost:5000/api/logout', "_self")} 
+                          window.open(process.env.REACT_APP_LOGOUT_URL, "_self")} 
                           isSize={'medium'} 
                     style={{
                       backgroundColor:'red',
@@ -49,7 +50,7 @@ class Home extends Component {
                     }}>Logout</Button>
                 </Title>
 
-                    
+                    <Process />
 
               </Container>
              )

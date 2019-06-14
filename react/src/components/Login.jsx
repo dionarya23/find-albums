@@ -18,7 +18,7 @@ function Login() {
                          album artist favoritmu
                       </Subtitle>
                     
-                      <Button onClick={() => window.open('http://localhost:5000/api/auth', "_self")} 
+                      <Button onClick={() => window.open(process.env.REACT_APP_LOGIN_URL, "_self")} 
                               isSize={'medium'} 
                               style={{
                                 backgroundColor:'#03CA5F',

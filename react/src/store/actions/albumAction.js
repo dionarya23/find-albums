@@ -1,33 +1,32 @@
 import {GET_ALBUM} from './constants'
 
 export const getAlbum = image => dispatch => {
-    fetch('http://localhost:5000/api/albums', {
+    fetch('http://localhost:5000/api/album', {
         method: 'POST',
         credentials: 'include',
         headers: {
             Accept: 'application/json',
-            'Content-Type':'multipart/form-data',
-            "Access-Control-Allow-Credentials": true
+            // 'Content-Type':'multipart/form-data',
+            "Access-Control-Allow-Credentials": true,
+            "x-api-key": process.env.REACT_APP_X_API_KEY
         },
         body: image
     })
      .then(response => {
         if (response.status === 200) return response.json();
-        throw new Error("failed to authenticate user");
+        throw new Error("tidak bisa mengambil albums");
       })
       .then(responseJson => {
         dispatch({
             type    : GET_ALBUM,
-            payload : {
-                user    : responseJson
-            } 
+            payload : responseJson
         })
       })
       .catch(error => {
         dispatch({
             type: GET_ALBUM,
             payload: {
-                    error   : "Failed to authenticate user"
+                    error   : "Seperti nya sedang rusak"
             }
         });
       });
