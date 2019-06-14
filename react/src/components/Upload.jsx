@@ -19,6 +19,7 @@ class Upload extends Component {
     onChange(e) {
         let file = e.target.files[0]
         var reader  = new FileReader();
+        let photoURL
         reader.onload(function () {
             photoURL = reader.result;
         }, false);
@@ -29,7 +30,7 @@ class Upload extends Component {
         this.props.getAlbum({
             avatar: photoURL
         })
-        
+
         this.setState({loading:true})
     }
 
