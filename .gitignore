@@ -4,3 +4,4 @@ package-lock.json/
 .idea
 .env
 capture-20190614-205131.png
+/config/visionKey.json
