@@ -1,7 +1,7 @@
 import {GET_ALBUM} from './constants'
 
 export const getAlbum = image => dispatch => {
-    fetch('http://localhost:5000/api/album', {
+    fetch('https://findalbum-backend.herokuapp.com/api/album', {
         method: 'POST',
         credentials: 'include',
         headers: {
