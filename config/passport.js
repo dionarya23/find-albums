@@ -13,7 +13,7 @@ passport.use(new SpotifyStrategy(
     {
       clientID    : process.env.CLIENT_ID,
       clientSecret:  process.env.CLIENT_SECRET,
-      callbackURL : 'http://localhost:5000/api/auth/spotify/callback'
+      callbackURL : 'http://findalbum-backend.herokuapp.com/api/auth/spotify/callback'
     },
     function(accessToken, refreshToken, expires_in, profile, done) {
         var user = {
