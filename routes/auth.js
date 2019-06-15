@@ -40,7 +40,7 @@ router.post('/token', (req, res) => {
 
 // when login is successful, retrieve user info
 router.get("/success", (req, res) => {
-
+  console.log(req.user)
     if (req.user) {
       res.status(200).json({
         success: true,

@@ -1,20 +1,17 @@
-const multer = require('multer')
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'images/')
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '.jpg') //Appending .jpg
-    }
-  })
-  
-  var upload = multer({ storage: storage });
-const express = require('express')
-const router  = express.Router()
-const fs = require('fs')
-const vision = require('@google-cloud/vision')
-const fetch = require('node-fetch')
+const cloudinary = require('../config/cloudinary')
+const express    = require('express')
+const router     = express.Router()
+const fs         = require('fs')
+const vision     = require('@google-cloud/vision')
+const fetch      = require('node-fetch')
+const multer     = require('multer')
+const Datauri    = require('datauri')
+const path       = require('path')
+const storage    = multer.memoryStorage()
 
+const multerUploads = multer({storage:storage}).single('avatar')
+const dUri = new Datauri()
+const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
 const client = new vision.ImageAnnotatorClient({
   keyFilename: process.env.VISION_KEY
 });
@@ -29,14 +26,23 @@ var middleware = function(req, res, next) {
 }
 
 
-router.post('/', middleware, upload.single('avatar'), (req, res) => {
+router.post('/', middleware, multerUploads, (req, res) => {
 
-  // console.log(req.file)
+  let file = dataUri(req).content
 
-  // res.json({
-  //   message:'debug'
-  // })
-    client.webDetection(req.file.path)
+  // console.log(file)
+  cloudinary.v2.uploader.upload(file, (err, imageCloud) => {
+    console.log('imageCloud ', imageCloud)
+    console.log('error ', err)
+
+    if (err) {
+      res.json({
+        label: 'sedang rusak :)',
+        spotify: 'maaf'
+      })
+    }
+
+    client.webDetection(imageCloud.url)
     .then(response => {
        
     var result = response[0].webDetection.bestGuessLabels[0].label,
@@ -47,7 +53,8 @@ router.post('/', middleware, upload.single('avatar'), (req, res) => {
         headers: {
         Authorization: 'Bearer '+req.user.accessToken
        }
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then(album => {
         res.json({
             label: result,
@@ -57,12 +64,13 @@ router.post('/', middleware, upload.single('avatar'), (req, res) => {
         res.json(err)
     })
 
-      fs.unlinkSync(req.file.path)
     }).catch(err => {
-
+        console.log('error here ', err)
       res.json(err)
 
     });
+  })
+    
 
 })
 

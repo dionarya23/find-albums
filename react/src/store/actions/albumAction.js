@@ -1,7 +1,7 @@
 import {GET_ALBUM} from './constants'
 
 export const getAlbum = image => dispatch => {
-  console.log("mau ngirim nih :"+ image)
+  // console.log("mau ngirim nih :"+ image)
     fetch(process.env.REACT_APP_ENPOINT+'/api/album', {
         method: 'POST',
         credentials: 'include',
@@ -9,9 +9,9 @@ export const getAlbum = image => dispatch => {
             Accept: 'application/json',
             "Access-Control-Allow-Credentials": true,
             "x-api-key": process.env.REACT_APP_X_API_KEY,
-            "Content-Type": 'application/json',
+            // "Content-Type": 'application/json',
         },
-        body: JSON.stringify(image)
+        body: image
     })
      .then(response => {
         if (response.status === 200) return response.json();

@@ -17,20 +17,10 @@ class Upload extends Component {
     }
 
     onChange(e) {
-        let file = e.target.files[0]
-        var reader  = new FileReader();
-        let photoURL
-        reader.onload(function () {
-            photoURL = reader.result;
-        }, false);
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-        this.props.getAlbum({
-            avatar: photoURL
-        })
-
+        let form_data = new FormData()
+        form_data.append('avatar', e.target.files[0])
+        
+        this.props.getAlbum(form_data)
         this.setState({loading:true})
     }
 
